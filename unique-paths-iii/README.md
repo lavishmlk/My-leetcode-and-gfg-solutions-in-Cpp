@@ -1,3 +1,4 @@
+[Discussion Post (created on 24/11/2021 at 22:35)](https://leetcode.com/problems/unique-paths-iii/discuss/1645101/easy-to-understand-and-simple-code-oror-C%2B%2B)  
 <h2>980. Unique Paths III</h2><h3>Hard</h3><hr><div><p>You are given an <code>m x n</code> integer array <code>grid</code> where <code>grid[i][j]</code> could be:</p>
 
 <ul>
