@@ -43,14 +43,14 @@ public:
         else{
      ListNode* prev=NULL;
         ListNode* curr=head;
-        ListNode* ahead=curr->next;
-        
+            
         while(curr!=NULL){
+            ListNode* ahead=curr->next;
             curr->next=prev;
             prev=curr;
             curr=ahead;
-            if(ahead!=NULL)
-            ahead=ahead->next;
+            // if(ahead!=NULL)
+            // ahead=ahead->next;
         }
         head=prev;
         return head;
