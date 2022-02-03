@@ -31,30 +31,25 @@ public:
                 return temp;  
     }
     
+   ListNode* helper(ListNode* left,ListNode* right,int Count,int size){ 
+        if(left==NULL){
+            return right;
+        }
+        
+       right=helper(left->next,right,Count+1,size);
+        if(Count<size/2){
+            swap(left->val,right->val);
+        }
+       return right=right->next;
+    }
+    
     ListNode* reverseList(ListNode* head) {
         int size=Size(head);
-        if(size==0){
-            ListNode* n=NULL;
-            return n;
-        }
-        else if(size==1){
-            return head;
-        }
-        else{
-     ListNode* prev=NULL;
-        ListNode* curr=head;
-            
-        while(curr!=NULL){
-            ListNode* ahead=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=ahead;
-            // if(ahead!=NULL)
-            // ahead=ahead->next;
-        }
-        head=prev;
+        ListNode* left=head;
+        ListNode* right=head;
+        int Count=0;
+   helper(left,right,Count,size);
         return head;
-        }
     }
 };
 
