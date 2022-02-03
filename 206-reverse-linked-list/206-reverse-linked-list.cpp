@@ -33,16 +33,28 @@ public:
     
     ListNode* reverseList(ListNode* head) {
         int size=Size(head);
-        int left=0;
-       int right=size-1;
-        while(left<=right){
-            ListNode* leftNode=getNode(head,left);
-            ListNode* rightNode=getNode(head,right);
-            swap(leftNode->val,rightNode->val);
-            left++;
-            right--;
+        if(size==0){
+            ListNode* n=NULL;
+            return n;
         }
+        else if(size==1){
+            return head;
+        }
+        else{
+     ListNode* prev=NULL;
+        ListNode* curr=head;
+        ListNode* ahead=curr->next;
+        
+        while(curr!=NULL){
+            curr->next=prev;
+            prev=curr;
+            curr=ahead;
+            if(ahead!=NULL)
+            ahead=ahead->next;
+        }
+        head=prev;
         return head;
+        }
     }
 };
 
