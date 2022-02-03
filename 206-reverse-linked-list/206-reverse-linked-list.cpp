@@ -31,16 +31,16 @@ public:
                 return temp;  
     }
     
-   ListNode* helper(ListNode* left,ListNode* right,int Count,int size){ 
+ void helper(ListNode* &left,ListNode* &right,int Count,int size){ 
         if(left==NULL){
-            return right;
+            return;
         }
         
-       right=helper(left->next,right,Count+1,size);
+       helper(left->next,right,Count+1,size);
         if(Count<size/2){
             swap(left->val,right->val);
         }
-       return right=right->next;
+        right=right->next;
     }
     
     ListNode* reverseList(ListNode* head) {
