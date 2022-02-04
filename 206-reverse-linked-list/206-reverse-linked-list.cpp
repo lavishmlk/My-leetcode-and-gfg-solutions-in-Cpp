@@ -31,24 +31,28 @@ public:
                 return temp;  
     }
     
- void helper(ListNode* &left,ListNode* &right,int Count,int size){ 
-        if(left==NULL){
-            return;
-        }
-        
-       helper(left->next,right,Count+1,size);
-        if(Count<size/2){
-            swap(left->val,right->val);
-        }
-        right=right->next;
+ void helper(ListNode* &head,ListNode* &temp){ 
+     
+     if(temp->next==NULL){
+         head=temp;
+         return;
+     }
+     helper(head,temp->next);
+     temp->next->next=temp;
+     
+     
     }
     
     ListNode* reverseList(ListNode* head) {
+        
         int size=Size(head);
-        ListNode* left=head;
-        ListNode* right=head;
-        int Count=0;
-   helper(left,right,Count,size);
+        if(size==0){
+            return NULL;
+        }
+        ListNode* temp=head;
+    helper(head,temp);
+ temp->next=NULL;
+        
         return head;
     }
 };
