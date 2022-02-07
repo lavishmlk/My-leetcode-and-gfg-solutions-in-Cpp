@@ -69,6 +69,7 @@ return first;
             return true;
         }
         ListNode* middle=middleNode(head);
+        middle=middle->next;
         ListNode* reverse=reverseList(middle);
         
         ListNode* node1=head;
