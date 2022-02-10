@@ -157,10 +157,9 @@ Node* helper(Node* l1,Node* l2){
    Node* n1= reverseList(l1);
     Node* n2=reverseList(l2);
     
-     Node* dummy=NULL;
+     Node* dummy=new Node(-1);
+     Node* head=dummy;
    
-   
-    
     while(n1!=NULL){
        
          int d1=n1->data;
@@ -175,22 +174,27 @@ Node* helper(Node* l1,Node* l2){
         Node* n = new Node( n1->data - small );
         // creating new node for storing difference
        
-     n->next = dummy;
-        dummy = n;
+    dummy->next=n;
+    dummy=n;
             n1=n1->next;
         
         if(n2){
             n2=n2->next;
         }
     }
-    while(dummy->next && dummy->data==0)
-        dummy = dummy->next;
+   
 
-  return dummy;
+  return head->next;
   
 }
 Node* subLinkedList(Node* l1, Node* l2)
 {  
- return helper(l1,l2);
+   Node* helpernode= helper(l1,l2);
+   
+  Node* reversedNode= reverseList(helpernode);
  
+   while(reversedNode->next && reversedNode->data==0)
+        reversedNode = reversedNode->next;
+
+  return reversedNode;
 }
