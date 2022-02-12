@@ -75,7 +75,7 @@ int main(void) {
     }
 
 };*/
-
+//knk
 struct Node* partition(struct Node* head, int x) {
    /* Let us initialize first and last nodes of
       three linked lists
