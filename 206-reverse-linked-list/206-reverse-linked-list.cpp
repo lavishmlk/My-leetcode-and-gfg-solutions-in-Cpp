@@ -10,50 +10,24 @@
  */
 class Solution {
 public:
-    int Size(ListNode* head){
-        if(head==NULL){
-            return 0;
-        }
-        int size=0;
-        ListNode* temp=head;
-        while(temp->next!=NULL){
-            size++;
-            temp=temp->next;
-            
-        }
-        return size+1;
-    }
-      ListNode* getNode(ListNode* head,int index) {
-            ListNode* temp=head;
-            for(int i=0;i<index;i++){
-                temp=temp->next;
-            }
-                return temp;  
-    }
-    
- void helper(ListNode* &head,ListNode* &temp){ 
-     
-     if(temp->next==NULL){
-         head=temp;
-         return;
-     }
-     helper(head,temp->next);
-     temp->next->next=temp;
-     
-     
-    }
-    
+
+
     ListNode* reverseList(ListNode* head) {
-        
-        int size=Size(head);
-        if(size==0){
-            return NULL;
+ 
+     ListNode* prev=NULL;
+        ListNode* curr=head;
+            
+        while(curr!=NULL){
+            ListNode* ahead=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=ahead;
+            // if(ahead!=NULL)
+            // ahead=ahead->next;
         }
-        ListNode* temp=head;
-    helper(head,temp);
- temp->next=NULL;
-        
+        head=prev;
         return head;
+        
     }
 };
 
