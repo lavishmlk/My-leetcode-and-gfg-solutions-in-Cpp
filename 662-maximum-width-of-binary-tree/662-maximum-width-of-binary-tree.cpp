@@ -25,7 +25,7 @@ public:
         
         while(que.size()!=0){
        unsigned long long int leftindex=que.front().second;
-      unsigned long long int rightindex=que.front().second;
+      unsigned long long int rightindex=que.front().second;//isme aur niche jo  rightindex=p.second; likha hai dono me 1st iteration se pehle same hi value hongi baad me niche wle ki change hoti jaengi
             int size=que.size();
             while(size-->0){
               Pair p=que.front();
