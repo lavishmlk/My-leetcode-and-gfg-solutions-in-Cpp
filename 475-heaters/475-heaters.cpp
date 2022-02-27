@@ -39,15 +39,17 @@ public:
                    int minval=abs(heaters[ubval]-houses[i]);
                 Max=max(Max,minval);
             }
-            else if(abs(houses[i]-heaters[lbval])<abs(houses[i]-heaters[lbval-1])){
-                    int ubval=lbval-1;
-            int minval=abs(heaters[lbval]-houses[i]);
-               Max=max(Max,minval);
-            }
+            //Archit ki tarah 4 conditions ki zarurat nhi hai 3 me hi ho jaega
+            // else if(abs(houses[i]-heaters[lbval])<abs(houses[i]-heaters[lbval-1])){
+            //         int ubval=lbval-1;
+            // int minval=abs(heaters[lbval]-houses[i]);
+            //    Max=max(Max,minval);
+            // }
                     else{
               
                     int ubval=lbval-1;
-            int minval=abs(heaters[ubval]-houses[i]);
+            // int minval=abs(heaters[ubval]-houses[i]);
+                         int minval=min(abs(heaters[lbval]-houses[i]),abs(heaters[ubval]-houses[i]));
                Max=max(Max,minval);
             }
             
