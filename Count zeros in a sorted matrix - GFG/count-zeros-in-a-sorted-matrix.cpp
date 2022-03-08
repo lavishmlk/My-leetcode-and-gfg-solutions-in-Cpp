@@ -30,13 +30,21 @@ int transitionPoint(vector<int>nums, int lo,int hi){
 
 	int n=arr.size();
 		int right=n-1;
+		int index=0;
 	for(int i=0;i<n;i++){
 		 int transition=transitionPoint(arr[i],0,right);
-		 count=count+transition;}
-		 return count;
-	   // if(transition!=-1 && m-transition>noof1s){
-	        
-	   // }
+	     if(transition!=0 && transition>index){
+	         index=transition;
+	         right=transition-1;
+	         count=count+transition;
+	    }
+	    else{
+	       count=count+transition;
+	    }
+	}
+	
+	   
+	    	 return count;
 	}
 };
 
