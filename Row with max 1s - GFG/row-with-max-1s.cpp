@@ -7,10 +7,10 @@ using namespace std;
 class Solution{
 public:
 //Normal BS
-int transitionPoint(vector<int>&nums, int n){
-        int lo=0;
+int transitionPoint(vector<int>&nums, int lo,int hi){
+    
         int ans=-1;
-        int hi=n-1;
+        
         while(lo<=hi){
             int mid=(lo+hi)/2;
          
@@ -26,11 +26,11 @@ int transitionPoint(vector<int>&nums, int n){
 
 	int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
 // 	int left=0;
-// 	int right=m-1;
+	int right=m-1;
 	int ans=-1;
 	int noof1s=0;
 	for(int i=0;i<n;i++){
-	    int transition=transitionPoint(arr[i],m);
+	    int transition=transitionPoint(arr[i],0,right);
 	    if(transition!=-1 && m-transition>noof1s){
 	        ans=i;
 	        noof1s=m-transition;
