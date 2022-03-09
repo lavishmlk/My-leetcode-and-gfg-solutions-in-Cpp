@@ -1,7 +1,7 @@
 class Solution {
 public:
-      bool isPossible(vector<int> pages, int maxLoad, int totalStud){
-          int books=pages.size();
+      bool isPossible(int pages[], int maxLoad, int totalStud,int n){
+          int books=n;
           int currStud=1;
           int currPages=0;
  //     int i=0;
@@ -35,9 +35,9 @@ public:
     }
     
     //Function to find minimum number of pages.
-    int findPages(vector<int> arr, int M) 
+    int findPages(int arr[], int M,int n) 
     {
-        int N=arr.size();
+        int N=n;
         int sum=0;
        int Max=INT_MIN;
         for(int i=0;i<N;i++){
@@ -51,7 +51,7 @@ public:
         int ans=high;
         while(low<=high){
             int mid=low+(high-low)/2;
-            if(isPossible(arr,mid,M)==true){
+            if(isPossible(arr,mid,M,n)==true){
                 ans=mid;
                 high=mid-1;
             }
@@ -63,11 +63,12 @@ public:
     }
     
     int splitArray(vector<int>& nums, int m) {
-        // int* arr=new int[nums.size()];
-        // for(int i=0;i<nums.size();i++){
-        //     arr[i]=nums[i];
-        // }
+        int* arr=new int[nums.size()];
+        int n=nums.size();
+        for(int i=0;i<nums.size();i++){
+            arr[i]=nums[i];
+        }
         // copy(nums.begin(),nums.end(),arr);
-        return findPages(nums,m);
+        return findPages(arr,m,n);
     }
 };
