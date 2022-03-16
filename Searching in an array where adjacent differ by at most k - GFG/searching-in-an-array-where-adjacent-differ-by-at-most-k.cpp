@@ -42,7 +42,7 @@ int search(int arr[], int n, int x, int k)
               if(val==target){
            return low;
        }
-       int minJump=(abs(target-val))/k;
+       int minJump=abs(target-val)/k;
        if(minJump==0){
            minJump=1;
        }
