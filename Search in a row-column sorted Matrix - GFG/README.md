@@ -1,5 +1,5 @@
 # Search in a row-column sorted Matrix
-## Medium 
+##  Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a matrix of size&nbsp;n x m, where every row and column is<strong> sorted in increasing order</strong>, and a number <strong>x.</strong>&nbsp;Find whether&nbsp;element x&nbsp;is present in the matrix or not.</span><br>
 <br>
