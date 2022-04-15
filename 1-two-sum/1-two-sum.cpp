@@ -10,8 +10,9 @@ public:
             
             auto it=m.find(target-nums[i]);
             if(it!=m.end()){
+                  arr.push_back(i);
                 arr.push_back(it->second);
-                arr.push_back(i);
+              
                return arr;
             }
                else{
