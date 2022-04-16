@@ -32,7 +32,7 @@ public:
         sort(nums.begin(),nums.end());
          vector<vector<int>>finalarray;
         
-        for(int i=0;i<nums.size()-1;i++){
+        for(int i=0;i<nums.size()-2;i++){
             if(i>0){
             if(nums[i]==nums[i-1]){
                 continue;
