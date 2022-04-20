@@ -1,28 +1,41 @@
 class Solution {
 public:
-    vector<vector<int> > fourSum(vector<int> &num, int target) {
-        sort(num.begin(), num.end());
-        unordered_map<int, set<pair<int, int>>> hash;
-        set<vector<int>> ans;
-        int n = num.size();
-        for (int i = 0; i < n; i ++) {
-            for (int j = i + 1; j < n; j ++) {
-                int a = num[i] + num[j];
-                if (hash.count(target - a)) {
-                    for (auto &p: hash[target - a]) {
-                        vector<int> b = {p.first, p.second, num[i], num[j]};
-                        ans.insert(b);
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>> ans;
+        int n=nums.size();
+        if(n<4) return ans;
+        sort(nums.begin(),nums.end());
+        unordered_map<int,vector<pair<int,int>>> mp;
+        for(int i=0;i<n-1;i++)
+        {
+            for(int j=i+1;j<n;j++)
+            {
+                mp[nums[i]+nums[j]].push_back({i,j});//making 2 sum map
+            }
+        }
+        for(int i=0;i<n-1;i++)
+        {
+               if(i>0 and nums[i]==nums[i-1])  continue;
+            for(int j=i+1;j<n;j++)
+            {
+                if(j>i+1 and nums[j]==nums[j-1])  continue;
+                int sum=target-nums[i]-nums[j];
+                if(mp.find(sum)!=mp.end())
+                {
+                    for(auto it : mp[sum])
+                    {
+                        int k=it.first;
+                        int l=it.second;
+                        if(k>j){
+                            if(!ans.empty()&& ans.back()[0]==nums[i]&&ans.back()[1]==nums[j]&&ans.back()[2]==nums[k]&&ans.back()[3]==nums[l]) continue;
+                            vector<int> temp={nums[i],nums[j],nums[k],nums[l]};
+                            ans.push_back(temp);
+                        }
                     }
                 }
             }
-            for (int j = 0; j < i; j ++) {
-                int a = num[j], b = num[i];
-                hash[a + b].insert(make_pair(a, b));
-            }
         }
-        vector<vector<int>>a;
-        a.assign(ans.begin(),ans.end());
-        return a;
-        // return vector<vector<int>>(ans.begin(), ans.end());
+        
+        return ans;
     }
 };
