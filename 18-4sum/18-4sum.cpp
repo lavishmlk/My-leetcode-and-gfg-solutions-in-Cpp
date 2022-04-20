@@ -20,6 +20,9 @@ public:
                 hash[a + b].insert(make_pair(a, b));
             }
         }
-        return vector<vector<int>>(ans.begin(), ans.end());
+        vector<vector<int>>a;
+        a.assign(ans.begin(),ans.end());
+        return a;
+        // return vector<vector<int>>(ans.begin(), ans.end());
     }
 };
