@@ -17,6 +17,7 @@ public:
                 Count++;
                 end++;
             }
+            i=end;
            ans=max(Count,ans);
         }
         
