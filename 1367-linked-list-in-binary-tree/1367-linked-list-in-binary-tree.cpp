@@ -51,12 +51,19 @@ if(head==NULL){
         if(root==NULL){
             return false;
         }
-    // bool val=helper(head,root);
-    //     if(val){
-    //         return true;
-    //     }
-    //    return isSubPath(head,root->left);
-    //    return isSubPath(head,root->right);
-        return helper(head,root) || isSubPath(head,root->left) || isSubPath(head,root->right);
+    bool val=helper(head,root);
+        if(val){
+            return true;
+        }
+      bool lval=isSubPath(head,root->left);
+           if(lval){
+       return true;
+   }
+   bool rval= isSubPath(head,root->right);
+           if(rval){
+       return true;
+   }
+        return false;
+        // return helper(head,root) || isSubPath(head,root->left) || isSubPath(head,root->right);
     }
 };
