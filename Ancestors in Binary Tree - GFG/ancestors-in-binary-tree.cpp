@@ -99,31 +99,34 @@ struct Node
      struct Node* right;
 };
 */
-//codeknk
+
 class Solution{
   public:
-    bool AncestorsUtil(struct Node *root, int target,vector<int> &nodes)
-    {
-        if (root == NULL)
-    	    return false;
-        if (root->data == target)
-    	    return true;
-        if ( AncestorsUtil(root->left, target,nodes) ||AncestorsUtil(root->right, target,nodes) )
-        {
-    	    nodes.push_back(root->data);
-    	    return true;
-        }
+  bool Ancestors(Node* root, vector<int>& path, int target){
+        if(root == NULL) return false;
+        if(target == root->data) return true;
+        
+        path.push_back(root->data);
+        if(Ancestors(root->left, path, target) == true)
+            return true;
+        
+        if(Ancestors(root->right, path, target) == true)
+            return true;
+            
+        path.pop_back();
         return false;
     }
-    
+    // Function should return all the ancestor of the target node
     vector<int> Ancestors(struct Node *root, int target)
     {
-        vector<int> nodes;
-        AncestorsUtil(root,target,nodes);
-        return nodes;
+          vector<int>ancestors;
+        Ancestors(root, ancestors, target);
+        reverse(ancestors.begin(),ancestors.end());
+        return ancestors;
     }
-
 };
+  
+    
 
 // { Driver Code Starts.
 int main()
