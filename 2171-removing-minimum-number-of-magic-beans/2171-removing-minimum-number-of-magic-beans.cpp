@@ -3,7 +3,7 @@ public:
     //striver ka dekha
     long long minimumRemoval(vector<int>& beans) {
         
-        long long ans=1e18;
+        long long ans=LONG_MAX;
          long long n=beans.size();
          long long sum=0;
         for(int i=0;i<n;i++){
