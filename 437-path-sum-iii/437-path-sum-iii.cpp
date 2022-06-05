@@ -11,30 +11,28 @@
  */
 class Solution {
 public:
-    int Count=0;
-          void helper(TreeNode* root, long long targetsum,long long sum){
-        if(root==NULL){
-            return;
-        }
-              
-            if(sum+root->val==targetsum){
-              Count=Count+1;
-            }
 
-             helper(root->left,targetsum,sum+root->val);
-             helper(root->right,targetsum,sum+root->val);
-    
+    unordered_map<int,int>m;
+    int Count;
+   void helper(TreeNode* root, long long targetsum,long long sum){
+        if(root==NULL){
+            return ;
+        }
+        sum=sum+root->val;
+        
+        if(m.find(sum-targetsum)!=m.end()){
+            Count=Count+m[sum-targetsum];
+        }
+       m[sum]++;
+        helper(root->left,targetsum,sum);
+        helper(root->right,targetsum,sum);
+        m[sum]--;
     }
     
     int pathSum(TreeNode* root, int &targetsum) {
-        if(root==NULL){
-            return 0;
-        }
-        int sum=0;
-        
-      helper(root,(long long)targetsum,sum);
-        pathSum(root->left,targetsum);
-            pathSum(root->right,targetsum);
-          return  Count;
+long long sum=0;
+        m[0]=1;
+        helper(root,(long long)targetsum,sum);
+        return Count;
     }
 };
