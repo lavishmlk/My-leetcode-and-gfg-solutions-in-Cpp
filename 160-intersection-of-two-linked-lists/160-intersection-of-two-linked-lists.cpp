@@ -42,7 +42,7 @@ public:
             while(diff-->0){
                 temp=temp->next;
             }
-            //isme pehle check karna padega ki temp==head kyunki agar baad me kara to kya pata abhi hi dono last nodes pe hai aur agar next karne ke baad check kara to null ho jaenge
+            //isme pehle check karna padega ki temp==head kyunki agar baad me kara to kya pata abhi hi dono //last nodes pe hai aur agar next karne ke baad check kara to null ho jaenge
               while(temp!=NULL && headA!=NULL){
                      if(temp==headA){
                       return temp;
