@@ -116,6 +116,7 @@ struct Node
 }; */
 
 // function should print the nodes at k distance from root
+//bina kuch return kiye void leke bhi kar sakte the ye ques
 vector<int> Kdistance(struct Node *root, int k)
 {
         vector<int>v;
