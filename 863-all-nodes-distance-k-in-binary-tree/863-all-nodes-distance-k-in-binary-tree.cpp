@@ -9,6 +9,7 @@
  */
 class Solution {
 public:
+    //THIS IS METHOD 2 BY ARCHIT TO AVOID EXTRA SPACE BUT METHOD 1 IS EASY JO PEHLE SUBMIT KIYA HUA HAI //WITH EXTRA SPACE
 int DFS(TreeNode* root, TreeNode* target, int k, vector<int>& res){
         if(root == NULL) return -1;
         if(root == target){
