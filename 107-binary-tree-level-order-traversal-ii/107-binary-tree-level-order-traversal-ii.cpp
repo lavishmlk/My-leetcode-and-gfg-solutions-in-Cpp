@@ -11,43 +11,35 @@
  */
 class Solution {
 public:
-    vector<vector<int>> levelOrderBottom(TreeNode* root) {
-                queue<TreeNode*>q;
-        vector<vector<int>>v;
-   if(root==NULL){
-       return v;
-   }
-
-        q.push(root);
-        
-        while(q.size()>0){
-             vector<int>smallv;
-            int count=q.size();
-            for(int i=0;i<count;i++){
-                    
-                    TreeNode* n=q.front();
-                    q.pop();
-          
-                 smallv.push_back(n->val);
-    
-          
-            if(n->left!=NULL)
-                 q.push(n->left);
-            
-           
-                if(n->right!=NULL)
-                    q.push(n->right);
-                
-            
-            }
-            if(smallv.size()>0){
-                   v.push_back(smallv);
-            }
-
-        }
-       reverse(v.begin(),v.end());
-        return v;
-     
+    //isko bfs se kia hua hai pichle submission me par ye dfs wli approsach hai discuss se uthai
+int findMaxLen(TreeNode* root)
+{
+    if(root==NULL) return 0;
+    return 1+max(findMaxLen(root->left),findMaxLen(root->right));
+}
+void levelOrderRec(TreeNode* root, vector<vector<int>>& vec, int level)
+{
+    if(root==NULL) return;
       
+          //imp see how we pushed in vector see my notebook pg 17
+       vec[level].push_back({root -> val});
+
+    levelOrderRec(root->left,vec,level-1);
+    levelOrderRec(root->right,vec,level-1);
+}
+
+vector<vector<int> > levelOrderBottom(TreeNode *root) {
+    vector<vector<int>> result;
+    if(root==NULL) return result;
+    int count = findMaxLen(root);
+ 
+    for(int i = 0; i < count; i++)
+    {
+        vector<int> temp;
+        result.push_back(temp);
     }
+    levelOrderRec(root, result, count-1);
+    return result;
+}
+
 };
