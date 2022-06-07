@@ -11,47 +11,19 @@
  */
 class Solution {
 public:
-     vector<vector<int>> levelOrder(TreeNode* root) {
-        
-        queue<TreeNode*>q;
-        vector<vector<int>>v;
-   if(root==NULL){
-       return v;
-   }
-
-        q.push(root);
-        
-        while(q.size()>0){
-             vector<int>smallv;
-            int count=q.size();
-            for(int i=0;i<count;i++){
-                    
-                    TreeNode* n=q.front();
-                    q.pop();
-          
-                 smallv.push_back(n->val);
+    //isko bfs se kia hua hai pichle submission me par ye dfs wli approsach hai discuss se uthai
+    vector<vector<int>> ans;
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        fun(root, 0);
+        return ans;
+    }
     
-          
-            if(n->left!=NULL)
-                 q.push(n->left);
-            
-           
-                if(n->right!=NULL)
-                    q.push(n->right);
-                
-            
-            }
-            if(smallv.size()>0){
-                   v.push_back(smallv);
-            }
-
-        }
-       
-        return v;
-     
-      
-     
-      
-        
+    void fun(TreeNode* root, int level) {
+        if(!root)  return;
+        //imp see how we pushed in vector...see my notebook pg 17
+        if(ans.size() == level) ans.push_back({root -> val});
+        else ans[level].push_back(root -> val);
+        fun(root -> left, level + 1);
+        fun(root -> right, level + 1);
     }
 };
