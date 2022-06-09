@@ -1,64 +1,60 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-    
-    typedef pair<TreeNode*,int>Pair;
-    
-    struct comp{
-        public:
-        bool operator()(Pair &a,Pair &b){
-         return a.first->val>b.first->val;
-        }
-    };
-    
-   
-    void width(TreeNode* t,int hl,vector<int>&arr){
+    // Another solution using 2d map -it was in archits vides isse pichla submission is from evernote
+    map<int,map<int,vector<int>>>m;
+    void DFS(TreeNode* root,int col,int row){
         
-        if(t==NULL){
+        if(root==NULL){
             return;
         }
         
-       arr[0]=min(arr[0],hl);
-         arr[1]=max(arr[1],hl);
-            
-            width(t->left,hl-1,arr);
-        width(t->right,hl+1,arr);
+        m[col][row].push_back(root->val);
         
+        DFS(root->left,col-1,row+1);
+        DFS(root->right,col+1,row+1);
     }
-    
-    vector<vector<int>> verticalTraversal(TreeNode* root) {
+    vector<vector<int>> verticalTraversal(TreeNode* root){
+          vector<vector<int>>arr;
+        if(root==NULL){
+          
+            return arr; 
+        }
         
-       
-        vector<int>arr(2,0);
-       width(root,0,arr);
-        int range=arr[1]-arr[0]+1;
-        vector<vector<int>>verticalorderarr(range);
-         priority_queue<Pair,vector<Pair>,comp>pque;
-         priority_queue<Pair,vector<Pair>,comp>cque;
+        DFS(root,0,0);
         
-        pque.push({root,abs(arr[0])});
         
-        while(pque.size()!=0){
-            int size=pque.size();
-            while(size--){  
-            Pair rem=pque.top();
-            pque.pop();
-            
-                verticalorderarr[rem.second].push_back(rem.first->val);
+        //for col
+        for(auto i:m){
+            vector<int>oned;
+            //for row
+              vector<int>a;
+            for(auto j:i.second){
                 
-            if(rem.first->left){
-                cque.push({rem.first->left,rem.second-1});
+                for(auto k:j.second){
+                    a.push_back(k);
+                 
+                }
+                   sort(a.begin(),a.end());
+                while(a.size()>0){
+                    int p=a.front();
+                 a.erase(a.begin());
+                    oned.push_back(p);
+                }
             }
-            if(rem.first->right){
-                cque.push({rem.first->right,rem.second+1});
-            }
-            }
-             priority_queue<Pair,vector<Pair>,comp>temp=pque;
-            pque=cque;
-            cque=temp;
-        } 
-       
-        return verticalorderarr;
+           
+            arr.push_back(oned);
+        }
+        return arr;
     }
-  
-     
 };
