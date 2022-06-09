@@ -106,7 +106,7 @@ class Solution
     vector<int> verticalOrder(Node *root)
     {
                 queue<Pair>que;
-       map<int,vector<int>>m;
+       unordered_map<int,vector<int>>m;
             int minheight=0;
         int maxheight=0;
         vector<vector<int>>v;
