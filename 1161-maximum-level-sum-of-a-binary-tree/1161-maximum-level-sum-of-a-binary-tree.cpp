@@ -11,46 +11,28 @@
  */
 class Solution {
 public:
-    int maxval=INT_MIN;
-    int anslevel=1;
-   void bfs(TreeNode* root,int level){
-       if(root==NULL){
-           return;
-       }
+    void DFS(TreeNode* root, vector<int>&levelSum, int level){
+        if(root == NULL) return;
         
-       queue<TreeNode*>q;
-       
-       q.push(root);
-       
-       while(q.size()>0){
-           int sz=q.size();
-           int sum=0;
-           
-           while(sz--){
-         TreeNode* x=q.front();
-           q.pop();
-           
-           sum=sum+x->val;
-              
-               if(x->left)
-           q.push(x->left);
-               if(x->right)
-           q.push(x->right);
-           }
-          if(sum>maxval){
-              
-              anslevel=level;
-              maxval=sum;
-                cout<<level<<endl;
-          }
-           level++;
-         
-       }
+        if(levelSum.size() > level) 
+            levelSum[level]=levelSum[level]+root->val;
+        else levelSum.push_back(root->val);
+        
+        DFS(root->left, levelSum, level + 1);
+        DFS(root->right, levelSum, level + 1);
     }
     
     int maxLevelSum(TreeNode* root) {
+         vector<int>levelSum;
+     levelSum.push_back(0);
+        DFS(root, levelSum, 1);
         
-        bfs(root,1);
-        return anslevel;
+        int maxSumLevel = 1;
+        for(int i=1; i<levelSum.size(); i++){
+            if(levelSum[i] > levelSum[maxSumLevel]){
+                maxSumLevel = i;
+            }
+        }
+        return maxSumLevel;
     }
 };
