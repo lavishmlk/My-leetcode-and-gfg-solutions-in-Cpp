@@ -11,6 +11,7 @@
  */
 class Solution {
 public:
+    //using sfs by archit and 1st submitted by me using dfs
     void DFS(TreeNode* root, vector<int>&levelSum, int level){
         if(root == NULL) return;
         
