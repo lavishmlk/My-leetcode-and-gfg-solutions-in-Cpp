@@ -100,7 +100,6 @@ void printInorder(Node* root)
 class Solution
 {
     public:
-    
     typedef pair<Node*,int>Pair;
     //Function to find the vertical order traversal of Binary Tree.
     vector<int> verticalOrder(Node *root)
@@ -115,8 +114,7 @@ class Solution
     
         while(que.size()!=0){
         
-            int size=que.size();
-            while(size-->0){
+        
             Pair qpair=que.front();
             que.pop();
             
@@ -128,15 +126,8 @@ class Solution
             if(qpair.first->right)
             que.push(make_pair(qpair.first->right,qpair.second+1));
             
-            }
+            
     }
-        //       for(int i=minheight;i<=maxheight;i++){
-        //     int j=0;
-        //   while(m[i].size()!=j){
-        //       arr.push_back(m.second[j]);
-        //       j++;
-        //   }
-        // }  
   
         for(auto x:m){
                 for(auto p:x.second){
