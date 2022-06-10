@@ -1,29 +1,23 @@
 class Solution {
 public:
-    //from fraz video
-    
-   void helper(vector<int>& nums,vector<int>& ans,int idx,vector<vector<int>>& finalans){
-       
-       if(idx==nums.size()){
-           finalans.push_back(ans);
-           return;
-       }
-    
-       //yes call
-       ans.push_back(nums[idx]);
-       helper(nums,ans,idx+1,finalans);
-       //no call
-       ans.pop_back();
-       helper(nums,ans,idx+1,finalans);
-       
-    }
-    
+    //ITERATIVE SOLUTION, RECURSIVE ISKA PEHLE SUBMIT KAR RAKHA HAI, SAW VIDEO OF PRAKASH         SHUKLA
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>>finalans;
-        vector<int>ans;
+        vector<vector<int>> ans;
+        int n = nums.size();
         
-        helper(nums,ans,0,finalans);
-        return finalans;
+        ans.push_back({});
         
+        for(int i=0; i<n; i++)
+        {
+            int sz = ans.size();
+            for(int j=0; j<sz; j++)
+            {
+                vector<int> temp = ans[j];
+                temp.push_back(nums[i]);
+                ans.push_back(temp);
+            }
+        }
+        
+        return ans;
     }
 };
