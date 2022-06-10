@@ -6,16 +6,16 @@ public:
        
        if(idx==nums.size()){
            finalans.push_back(ans);
-           
+           return;
        }
-       else{
+    
        //yes call
        ans.push_back(nums[idx]);
        helper(nums,ans,idx+1,finalans);
        //no call
        ans.pop_back();
        helper(nums,ans,idx+1,finalans);
-       }
+       
     }
     
     vector<vector<int>> subsets(vector<int>& nums) {
