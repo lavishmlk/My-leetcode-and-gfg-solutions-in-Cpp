@@ -99,53 +99,55 @@ void printInorder(Node* root)
  // } Driver Code Ends
 class Solution
 {
-  public:
-    
-    typedef pair<Node*,int>Pair;
+    public:
+    //my initial submission was from rajneesh sir using bfs ye archit wla hai using dfs 
+    //See evernote aur leetcode wla solution pehle check kario ye code usi ka modification hai
     //Function to find the vertical order traversal of Binary Tree.
-    vector<int> verticalOrder(Node *root)
-    {
-                queue<Pair>que;
-       unordered_map<int,vector<int>>m;
-            int minheight=0;
-        int maxheight=0;
-        vector<vector<int>>v;
-        que.push({root,0});
-       vector<int>arr;
-    
-        while(que.size()!=0){
+     map<int,map<int,vector<int>>>m;
+     void DFS(Node* root,int col,int row){
         
-            int size=que.size();
-            while(size-->0){
-            Pair qpair=que.front();
-            que.pop();
-            
-            maxheight=max(maxheight,qpair.second);
-            minheight=min(minheight,qpair.second);
-            m[qpair.second].push_back(qpair.first->data);
-            if(qpair.first->left)
-            que.push(make_pair(qpair.first->left,qpair.second-1));
-            if(qpair.first->right)
-            que.push(make_pair(qpair.first->right,qpair.second+1));
-            
-            }
+        if(root==NULL){
+            return;
+        }
+        
+        m[col][row].push_back(root->data);
+        
+        DFS(root->left,col-1,row+1);
+        DFS(root->right,col+1,row+1);
     }
-        //       for(int i=minheight;i<=maxheight;i++){
-        //     int j=0;
-        //   while(m[i].size()!=j){
-        //       arr.push_back(m.second[j]);
-        //       j++;
-        //   }
-        // }  
-  
-       for(int i=minheight;i<=maxheight;i++){
-                for(auto p:m[i]){
-                    arr.push_back(p);
+    
+    vector<int> verticalOrder(Node *root)
+    { vector<int>arr;
+        if(root==NULL){
+          
+            return arr; 
+        }
+        
+        DFS(root,0,0);
+         vector<int>oned;
+        
+        //for col
+        for(auto i:m){
+           
+            //for row
+            //   vector<int>a;
+            for(auto j:i.second){
+                
+                for(auto k:j.second){
+                    // a.push_back(k);
+                   oned.push_back(k);
+                }
+                //   sort(a.begin(),a.end());
+                // while(a.size()>0){
+                //     int p=a.front();
+                //  a.erase(a.begin());
+                  
                 }
             }
-            
-        return arr;
-    }
+               return oned;
+        }
+     
+
 };
 
 
