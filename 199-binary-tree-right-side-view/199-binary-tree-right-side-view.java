@@ -15,16 +15,30 @@
  */
 //using dfs earlier solution was of bfs
 class Solution {
-    public void DFS(TreeNode root, List<Integer> rightView, int level){
+    //method 1 using first right side call then left side
+        public void DFS(TreeNode root, List<Integer> rightView, int level){
         if(root == null) return;
         
         if(level >= rightView.size())
             rightView.add(root.val);
-        else rightView.set(level, root.val);
+     
         
+             DFS(root.right, rightView, level + 1);
         DFS(root.left, rightView, level + 1);
-        DFS(root.right, rightView, level + 1);
+       
     }
+    
+//     method 2:
+//     public void DFS(TreeNode root, List<Integer> rightView, int level){
+//         if(root == null) return;
+        
+//         if(level >= rightView.size())
+//             rightView.add(root.val);
+//         else rightView.set(level, root.val);
+        
+//         DFS(root.left, rightView, level + 1);
+//         DFS(root.right, rightView, level + 1);
+//     }
     
     public List<Integer> rightSideView(TreeNode root) {
         List<Integer> rightView = new ArrayList<>();
