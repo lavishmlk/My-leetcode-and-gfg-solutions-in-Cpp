@@ -96,9 +96,8 @@ Node* buildTree(string str)
 class Solution {
   public:
   
-  map<int,pair<int,int>>m;
     
-   void helper(Node* root, int col,int row){
+ void helper(Node* root, int col,int row,map<int,pair<int,int>>&m){
       
       if(root==NULL){
           return;
@@ -113,14 +112,15 @@ class Solution {
         m[col].second=root->data;
     }
       
-      helper(root->left,col-1,row+1);
-      helper(root->right,col+1,row+1);
+      helper(root->left,col-1,row+1,m);
+      helper(root->right,col+1,row+1,m);
       
   }
   
     vector <int> bottomView(Node *root) {
-    // map<int,pair<int,vector<int>>>m;
-    helper(root,0,0);
+   
+  map<int,pair<int,int>>m;
+    helper(root,0,0,m);
     vector<int>v;
         for(auto val:m){
            v.push_back(val.second.second);
