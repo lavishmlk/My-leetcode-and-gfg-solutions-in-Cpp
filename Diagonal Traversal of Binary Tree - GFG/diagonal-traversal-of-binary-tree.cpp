@@ -119,23 +119,33 @@ struct Node
     int data;
     Node* left, * right;
 }; */
-vector<int> diagonal(Node *root)
-{vector<int>arr;
-     queue<Node*>q;
+
+void helper(Node* root,vector<int>&arr){
+    if(root==NULL){
+        return;
+    }
+    
+    queue<Node*>q;
     q.push(root);
-     Node* p;
-    while(!q.empty()){
+    
+    while(q.size()>0){
         
-       p=q.front();
+        Node* x =q.front();
         q.pop();
         
-        while(p){
-            if(p->left){
-               q.push(p->left); 
+        while(x!=NULL){
+            if(x->left){
+               q.push(x->left); 
             }
-            arr.push_back(p->data);
-            p=p->right;
+            arr.push_back(x->data);
+            x=x->right;
         }
     }
+}
+
+vector<int> diagonal(Node *root)
+{
+    vector<int>arr;
+  helper(root,arr);
   return arr;
 }
