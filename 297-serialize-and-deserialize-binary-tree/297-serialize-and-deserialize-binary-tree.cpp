@@ -28,19 +28,10 @@ public:
         
         stack<pair<TreeNode*,char>>stk;
         
-        char cstr[data.size() + 1];
-    strcpy(cstr, data.c_str()); 
+//         char cstr[data.size() + 1];
+//     strcpy(cstr, data.c_str()); 
         
         vector<string>v;
-//         char* ptr;
-//         ptr=strtok(cstr,",");
-    
-//         v.push_back(ptr);
-        
-//         while(ptr!=NULL){
-//             ptr=strtok(NULL,",");
-//             v.push_back(ptr);
-//         }
         
 istringstream ss(data);
 string token;
@@ -78,9 +69,9 @@ while(getline(ss, token, ',')) {
                     }
                     else{
                         // s.pop();
-                        stk.pop();
-                        s.first->right=n;
                         // stk.pop();
+                        s.first->right=n;
+                        stk.pop();
                     }
                     
                 }
