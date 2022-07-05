@@ -1,21 +1,40 @@
-//USING MAP
 
 class Solution {
 public:
-
+    //DONE BY ME, ALSO SEE ARCHIT CODE-LAST 1ST ACCEPTED
+    
     void sortColors(vector<int>& nums) {
-        map<int,int>mp;
-        int n=nums.size();
-        for(int i=0;i<n;i++){
-            mp[nums[i]]++;
+        
+        int low=0;
+        int high=0;
+        int mid=0;
+        int i=0;
+        
+        while(i<nums.size() && high<nums.size()){
+            if(nums[i]==0){
+                low++;
+                high++;
+                mid++;
+            }
+            else if(nums[i]==1){
+                mid++;
+                high++;
+            }
+            else{
+                high++;
+            }
+            i++;
         }
-        int j=0;
-        for(auto i:mp){
-           while(i.second){
-               nums[j++]=i.first;
-               i.second--;
-           } 
+        for(int i=0;i<nums.size();i++){
+            if(i<low){
+                nums[i]=0;
+            }
+            else if(i>=low && i<mid){
+                nums[i]=1;
+            }
+            else{
+                nums[i]=2;
+            }
         }
-        return;
     }
 };
