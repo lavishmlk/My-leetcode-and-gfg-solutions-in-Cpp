@@ -1,23 +1,21 @@
+//USING MAP
+
 class Solution {
 public:
-    void sortColors(vector<int>& arr) {
-        int n=arr.size();
-        int i=0;
-        int j=0;
-        int k=n-1;
-      while(j<=k){
-            if(arr[j]==0){
-                swap(arr[i],arr[j]);
-                i++;
-                j++;
-            }
-            else if(arr[j]==1){
-                j++;
-            }
-            else{
-                swap(arr[j],arr[k]);
-                k--;
-            }
+
+    void sortColors(vector<int>& nums) {
+        map<int,int>mp;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            mp[nums[i]]++;
         }
+        int j=0;
+        for(auto i:mp){
+           while(i.second){
+               nums[j++]=i.first;
+               i.second--;
+           } 
+        }
+        return;
     }
 };
