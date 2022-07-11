@@ -28,7 +28,7 @@ class Solution
     public:
     //Function to find the maximum profit and the number of jobs done.
     
-  static  bool com(const Job &a,const Job &b){
+  static  bool com( Job &a, Job &b){
         if(a.profit==b.profit){
             return a.dead>b.dead;
         }
