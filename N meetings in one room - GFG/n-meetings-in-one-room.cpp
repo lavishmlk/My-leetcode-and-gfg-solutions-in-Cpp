@@ -6,6 +6,7 @@ using namespace std;
 class Solution
 {
     //video 1 greedy
+    //first see meeting rooms
     public:
     //Function to find the maximum number of meetings that can
     //be performed in a meeting room.
@@ -27,9 +28,9 @@ class Solution
      }
     int maxMeetings(int start[], int end[], int n)
     {
-   
+       Interval intervals[n];
      
-        Interval* intervals=new Interval[n];
+        // or declare like this-> Interval* intervals=new Interval[n];
        
         for(int i=0;i<n;i++){
             intervals[i]=Interval(start[i],end[i]);
