@@ -28,7 +28,7 @@ class Solution
     public:
     //Function to find the maximum profit and the number of jobs done.
     
-   static bool comp(const Job &a,const Job &b){
+  static  bool com(const Job &a,const Job &b){
         if(a.profit==b.profit){
             return a.dead>b.dead;
         }
@@ -38,7 +38,7 @@ class Solution
     vector<int> JobScheduling(Job arr[], int n) 
     { 
         
-        sort(arr,arr+n,comp);
+        sort(arr,arr+n,com);
         int noofjobs=0;
         int maxprofit=0;
         int maxdeadline=0;
