@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //Two ways hai ya to calllagato hue subtract kardo jaise kara hua hai ya fir 2nd method is backtracking jo coments me hai
     bool isquare(int i,int s1,int s2,int s3,int s4,vector<int>& matchsticks)
     {
     if(i==matchsticks.size())
