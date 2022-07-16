@@ -21,7 +21,12 @@ TreeNode* helper(vector<int>& preorder, vector<int>& inorder,int inL,int inR,int
             return root;
         }
         TreeNode* root=new TreeNode(preorder[preIdx]);
-    int inIdx=m[preorder[preIdx]];
+    
+          auto it=m.find(preorder[preIdx]);
+       int inIdx=it->second;
+    
+    //this will also give ans but it will change all the indices to 0 so why use it
+    // int inIdx=m[preorder[preIdx]];
     
     root->left=helper(preorder,inorder,inL,inIdx-1,preIdx+1,m);
     root->right=helper(preorder,inorder,inIdx+1,inR,preIdx+1+(inIdx-inL),m);
