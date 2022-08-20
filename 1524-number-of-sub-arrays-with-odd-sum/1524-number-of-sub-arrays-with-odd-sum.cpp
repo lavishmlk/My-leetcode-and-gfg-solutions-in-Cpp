@@ -1,6 +1,7 @@
 class Solution {
 public:
     //pepcoding youtube
+    //even-odd or odd-even gives odd only
     int numOfSubarrays(vector<int>& arr) {
         
         long ans=0;
