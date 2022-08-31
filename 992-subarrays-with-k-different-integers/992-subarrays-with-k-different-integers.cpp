@@ -7,11 +7,13 @@ public:
 int n=arr.size();
 unordered_map<int,int>m;
 
-int i=0;
+// int i=0;
 int j=0;
 int Count=0;
-while(i<n){
-    m[arr[i]]++;
+// for(int i=0;i<n;i++){
+        int right=0;
+    while(right<arr.size()){
+    m[arr[right]]++;
     while(m.size()>B){
    
         m[arr[j]]--;
@@ -19,8 +21,8 @@ while(i<n){
         m.erase(arr[j]);}
         j++;
                      }
-Count=Count+(i-j+1);
-i++;
+Count=Count+(right-j+1);
+        right++;
 }
 return Count;
 }
