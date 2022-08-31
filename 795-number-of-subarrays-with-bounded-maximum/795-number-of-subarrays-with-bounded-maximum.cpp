@@ -7,14 +7,16 @@ public:
                int left=0;
        long long ans=0;
         int idx=-1;
+        int right=0;
         
-        for(int i=0;i<nums.size();i++){
+       while(right<nums.size()){
             
-            if(nums[i]>x){
-                idx=i;
+            if(nums[right]>x){
+                idx=right;
             }
                
              ans+=idx-0+1;
+           right++;
         }
         return ans;
     }
