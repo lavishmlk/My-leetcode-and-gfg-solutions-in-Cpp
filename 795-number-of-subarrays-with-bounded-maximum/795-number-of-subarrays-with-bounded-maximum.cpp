@@ -14,7 +14,7 @@ public:
                 idx=i;
             }
                
-             ans+=idx+1;
+             ans+=idx-0+1;
         }
         return ans;
     }
