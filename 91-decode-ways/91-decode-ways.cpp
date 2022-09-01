@@ -6,7 +6,7 @@ public:
 int printEncoding(string str,int dp[],int idx){
           
   if(str.length()==idx){
-      
+      //empty string
       return 1;
   }
     if(dp[idx]!=-1){
@@ -20,7 +20,7 @@ int val1=0; int val2=0;
     if(idx+1<str.length() && str[idx]!='0' ){
         string str2=str.substr(idx,2);
         cout<<str2<<" ";
-        if(stoi(str2)>=10 && stoi(str2)<=26 )
+        if(stoi(str2)<=26 )
         val2=printEncoding(str,dp,idx+2);
     }
     
