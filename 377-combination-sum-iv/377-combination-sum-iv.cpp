@@ -1,37 +1,34 @@
+
+    //using tabulation
+    //space = o(amount) pehle recursive space was also taken into consideration in memoizaton code
+    //cant do more space optimization bcz limited states are not there i-nums[j] kuch bhi ho sakta hai
+    // ITS WORKING FOR UNSIGNED INT BUT NOT FOR LONG LONG INT SINCE SIZEOF(LONG LONG INT)==SIZEOF(UNSIGNED INT) TO LONG LONG KE LIYE BHI TO CHALNA CHAHIYE
 class Solution {
 public:
     
-    //its just coin change permutation and the 1st method of coin change queston in which we passed 2 3 5 all in every call 
-    //just return 1 in base case thats diff there we returned 0
-    
-       int  memo(vector<int>&coins,int amount,int  dp[]){
+    int permutations(vector<int>&coins,int target){
         
-           if(amount<0){
-               return 0;
-           }
-       if(amount==0){
-           return 1;
-       }
-       if(dp[amount]!=-1){
-           return dp[amount];
-       }
-       
-        int permutation=0;
-       for(int i=coins.size()-1;i>=0;i--){
-          permutation+=memo(coins,amount-coins[i],dp);  
-       }   
- 
-       return dp[amount]=permutation;
+      unsigned int dp[target+1];
+        
+        dp[0]=1;
+          for(int i=1;i<=target;i++){
+            dp[i]=0;
+        }
+    
+      
+        for(int i=1;i<=target;i++){
+            for(int j=0;j<coins.size();j++){
+                if(i-coins[j]>=0){
+                        dp[i]=dp[i]+dp[i-coins[j]];
+
+                }
+            }
+        }
+        return dp[target];
     }
     
-    
-    
-    int combinationSum4(vector<int>& coins, int amount) {
-          int dp[amount+1];
-        for(int i=0;i<amount+1;i++){
-            dp[i]=-1;
-        }
-return memo(coins,amount,dp);
-   
+    int combinationSum4(vector<int>& nums, int target) {
+        vector<int>&coins=nums;
+        return permutations(coins,target);
     }
 };
