@@ -1,10 +1,9 @@
 class Solution {
 public:
-    
-   int bs(vector<int>& nums, int target){
+    //lower bound hota hai ya to value mil jae nhi to just greater
+   int lowerbound(vector<int>& nums, int target){
             int lo=0;
         int hi=nums.size()-1;
-       //lowerbound me nums.size se hi initialize karte hai
        int ans=nums.size();
       while(lo<=hi){
        
@@ -29,27 +28,23 @@ public:
         int Max=INT_MIN;
       
         for(int i=0;i<houses.size();i++){
-            int lbval=bs(heaters,houses[i]);
+            int lbval=lowerbound(heaters,houses[i]);
+            //now find closest
+            
+            //this condition means lower bound 0 index pe hai to lowerbound-1 i.e floor does not exist 
             if(lbval==0){
                 int minval=abs(heaters[lbval]-houses[i]);
           Max=max(Max,minval);
                 }
+            //is means ceil does not exist
             else if(lbval==heaters.size()){
-                  int ubval=lbval-1;
-                   int minval=abs(heaters[ubval]-houses[i]);
+                  int floor=lbval-1;
+                   int minval=abs(heaters[floor]-houses[i]);
                 Max=max(Max,minval);
             }
-            //Archit ki tarah 4 conditions ki zarurat nhi hai 3 me hi ho jaega
-            // else if(abs(houses[i]-heaters[lbval])<abs(houses[i]-heaters[lbval-1])){
-            //         int ubval=lbval-1;
-            // int minval=abs(heaters[lbval]-houses[i]);
-            //    Max=max(Max,minval);
-            // }
                     else{
-              
-                    int ubval=lbval-1;
-            // int minval=abs(heaters[ubval]-houses[i]);
-                         int minval=min(abs(heaters[lbval]-houses[i]),abs(heaters[ubval]-houses[i]));
+                    int floor=lbval-1;
+                         int minval=min(abs(heaters[lbval]-houses[i]),abs(heaters[floor]-houses[i]));
                Max=max(Max,minval);
             }
             
