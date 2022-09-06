@@ -8,12 +8,9 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-
 //josh oa
 class Solution {
-
 public:
-
 
 ListNode* mergeNodes(ListNode* head) {
     if(head->val==0){
