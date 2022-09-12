@@ -22,3 +22,37 @@ public:
         return false;
     }
 };
+
+
+//M2
+// class Solution
+// {
+// public:
+// 	bool checkString(string s)
+// 	{
+// 		auto it = s.begin();
+
+// 		while (it != s.end() && *it == 'a') ++it;
+
+// 		while (it != s.end() && *it == 'b') ++it;
+
+// 		return it == s.end();
+// 	}
+// };
+
+//M3
+// class Solution {
+// public:
+// bool checkString(string s) {
+//    for(int i=0;i<s.size()-1;++i){
+//       if(s[i]>s[i+1]) return false;  
+//    }    
+//   return true;
+// }
+// };
+
+
+// m4
+// bool checkString(string s) {
+//         return is_sorted(s.begin(),s.end());
+//     }
