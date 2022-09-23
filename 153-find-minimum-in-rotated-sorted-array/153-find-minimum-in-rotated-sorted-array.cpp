@@ -58,10 +58,12 @@ public:
                 return nums[mid+1];
             }
           
-           else if(nums[low]<nums[mid]){//so that we can get highest element and return high +1
+            //now if 1 side is sorted then other side will be difinitely unsorted
+           else if(nums[low]<nums[mid]){
                 low=mid+1;
             }
-            else if(nums[mid]<nums[high]){//so that we can get lowest element and return it
+        // same with this else if,if 1 side is sorted then other side will be difinitely unsorted
+            else if(nums[mid]<nums[high]){
                 high=mid-1;
             }
                    
