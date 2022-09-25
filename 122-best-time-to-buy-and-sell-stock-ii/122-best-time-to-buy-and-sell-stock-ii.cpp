@@ -1,23 +1,24 @@
 class Solution {
 public:
-    //greedy-dne by me
-   //video 13 l1
-    //also done with dp
+    //dp video 13 l1
+    //greedy wla easy tha last soln
+    //buy ke baad sell hi karna hoga aur sell ke baad buy
+    //logic-using dp table: if buying is necessary to sell kare hue profit me buy wla subtract karlo ya fir buy na karo tab pehle se jo profit aa rha hai dono me se jo bhi max hai
+    //similar logic for sell
     int maxProfit(vector<int>& prices) {
         
-        int least=prices[0];
-        // int Max=INT_MIN;
-        int profit=0;
+        int *buy=new int[prices.size()];
+        int *sell=new int[prices.size()];
+        
+        buy[0]=-prices[0];
+        sell[0]=0;
+        
         for(int i=1;i<prices.size();i++){
             
-            if(prices[i]<=least){
-                least=prices[i];
-            }
-            else{
-                profit=profit+prices[i]-least;
-               least=prices[i]; 
-            }
+            buy[i]=max(sell[i-1]-prices[i],buy[i-1]);
+            sell[i]=max(buy[i-1]+prices[i],sell[i-1]);
         }
-        return profit;
+        
+        return sell[prices.size()-1];
     }
 };
