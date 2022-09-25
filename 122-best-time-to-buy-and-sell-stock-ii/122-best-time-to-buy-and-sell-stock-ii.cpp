@@ -1,7 +1,8 @@
 class Solution {
 public:
     //greedy-dne by me
- 
+   //video 13 l1
+    //also done with dp
     int maxProfit(vector<int>& prices) {
         
         int least=prices[0];
