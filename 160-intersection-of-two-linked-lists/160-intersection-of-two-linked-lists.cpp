@@ -1,75 +1,45 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+
+//RECURSIVE DISCUSS SE LIYE-Time : O(size_of_list1 + size_of_list2) = O(n1+n2),O(size of various variables + call stack space) = O(c + n1 + n2) = O(n1+n2)
+//FOR ITERATIVE SEE PICHE WLA-USME PEHLE SIZE EQUAL TAK TRAVERSE KIA EK LINKEDLIST ME fir check karte gye
 class Solution {
 public:
-        int Size(ListNode* head){
-        if(head==NULL){
-            return 0;
+    ListNode* getIntersectionHelper(ListNode* nodeA, ListNode* nodeB, int sizeA, int sizeB){
+        if(sizeA==0 || sizeB==0){
+            return nullptr;
         }
-        int size=0;
-        ListNode* temp=head;
-        while(temp->next!=NULL){
-            size++;
-            temp=temp->next;
-            
+        
+        if(sizeA>sizeB){
+            return getIntersectionHelper(nodeA->next, nodeB, sizeA - 1, sizeB);
         }
-        return size+1;
+        else if(sizeA<sizeB){
+            return getIntersectionHelper(nodeA, nodeB->next, sizeA, sizeB-1);
+        }
+        else if(sizeA==sizeB && nodeA==nodeB){
+            return nodeA;
+        }
+        else{
+            return getIntersectionHelper(nodeA->next, nodeB->next, sizeA - 1, sizeB - 1);
+        }
     }
     
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        if(headA==NULL){
-            return NULL;
+        int sizeA = 0;
+        int sizeB = 0;
+        ListNode* tempA = headA; 
+        ListNode* tempB = headB; 
+		
+		//Evaluate size of first list
+        while(tempA!=nullptr){
+            sizeA++;
+            tempA = tempA->next;
         }
-        if(headB==NULL){
-            return NULL;
+		
+		//Evaluate size of second list
+        while(tempB!=nullptr){
+            sizeB++;
+            tempB = tempB->next;
         }
-           if(headA==headB){
-            return headA;
-        }
-           
-        int sizeofl1=Size(headA);
-        int sizeofl2=Size(headB);
-    
-        if(sizeofl2>sizeofl1){
-              ListNode* temp=headB;
-            int diff=(sizeofl2-sizeofl1);
-            while(diff-->0){
-                temp=temp->next;
-            }
-            //isme pehle check karna padega ki temp==head kyunki agar baad me kara to kya pata abhi hi dono //last nodes pe hai aur agar next karne ke baad check kara to null ho jaenge
-              while(temp!=NULL && headA!=NULL){
-                     if(temp==headA){
-                      return temp;
-                  }
-            temp=temp->next;
-                  headA=headA->next;
-               
-        }
-        }
-        else{
-              ListNode* temp=headA;
-              int diff=(sizeofl1-sizeofl2);
-                while(diff-->0){
-                temp=temp->next;
-            }
-                          while(temp!=NULL){
-                                   if(temp==headB){
-                                  return temp;
-                              }
-            temp=temp->next;
-                  headB=headB->next;
-                         
-        }
-        }
-        
-      return NULL;
-        
-        
+		//Recursive function call where checking actually happens
+        return getIntersectionHelper(headA, headB, sizeA, sizeB);
     }
 };
