@@ -1,13 +1,6 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
 class Solution {
 public:
+    //head ka distance intersection point se aur slow/fast ka distance intersection point se equal hoga
     ListNode *detectCycle(ListNode *head) {
          if(head==NULL || head->next==NULL){
             return NULL;
