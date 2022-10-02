@@ -1,7 +1,22 @@
 class MinStack {
 public:
-    //striver
-    //not intuitive at all
+    
+    //M1 using 2 stacks
+    //m2 using pair
+    
+    //m3
+    //pepcoding(min stack-II)
+    
+    //val+val-previous_min is modified value
+    //to get original value we we just return min coz min me original value padi hai
+    //in pop->we have to revert back to previos min after popping so to get previos min we do-> 2*min-st.top() bcz st.top() contains 2*val-previos_min
+    
+        //we will store a updatedvalue i.e val+val-min in stack
+//so basically stack me val honi chahiye thi par hume 2*val-min store kardia aur min me humne wo val store karli that is uss point tak ka minimum tha  
+    
+    //ye hame ye batata hai ki jab bhi stack me value min se choti hogi wahi point hai jahan humne modified value store ki thi
+    
+    
     stack < long long > st;
   long long mini;
     MinStack() {
@@ -15,10 +30,7 @@ public:
       mini = val;
       st.push(val);
     } else {
-      if (val < mini) {
-          //we will store a updatedvalue , and focus what is val and min here bcz these will be used in pop for understanding
-          //this mini is previous mini
-          
+      if (val < mini) {        
        st.push(2 * val - mini);
           //in mini we will stre the original value
         mini = val;
@@ -28,24 +40,23 @@ public:
     }
     }
     
+    
     void pop() {
         if (st.empty()) return;
-    long long el = st.top();
+    long long topval = st.top();
     st.pop();
 
-    if (el < mini) {
-        //we wantprevious min after poppping
-        // it will guve previous mini bcz its basically 2*mini-(2*val-mini) where mini was previous min and val was the current val at that time which we stored in mini 
-      mini = 2 * mini - el;
+    if (topval < mini) {
+      mini = 2 * mini - topval;
     }   
     }
     
     int top() {
             if (st.empty()) return -1;
 
-    long long el = st.top();
-    if (el < mini) return mini;
-    return el;
+    long long topval = st.top();
+    if (topval < mini) return mini;
+    return topval;
     }
     
     int getMin() {
