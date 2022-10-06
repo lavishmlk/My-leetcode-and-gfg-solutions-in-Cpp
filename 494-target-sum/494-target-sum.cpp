@@ -3,7 +3,7 @@ public:
     //EDGE CASES:
 //     As the array elements are positive integers including zero, we don’t want to find the case when S2 is negative or we can say that totSum is lesser than D, therefore if totSum<target, we simply return 0.
 // S2 can’t be a fraction, as all elements are integers, therefore if totSum – target is odd, we can return 0
-    //logic aditya v
+    //logic aditya v:-count subsets equal to given difference ki tarah hi hai s1-s2=diff and s1+s2=sum
 
 	int countSubsets(vector<int>arr, int target,int idx,int n,vector<vector<int>>&dp){
     
@@ -28,7 +28,7 @@ public:
 int yes=countSubsets(arr,target-arr[idx],idx+1,n,dp);
 int no=countSubsets(arr,target,idx+1,n,dp);
 
-return dp[idx][target]=(yes+no)%1000000007;
+return dp[idx][target]=(yes+no);
 }
     
 
