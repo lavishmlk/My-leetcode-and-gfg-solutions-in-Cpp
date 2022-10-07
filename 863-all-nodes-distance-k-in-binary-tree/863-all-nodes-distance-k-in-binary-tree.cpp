@@ -44,33 +44,29 @@ public:
    
 }
 
-void nodeskleveldown(TreeNode *root, int k,vector<int>&ans,TreeNode* blocker){
-      if(root==NULL || k<0 || root==blocker){
-     
-      return ;
-  }
-  if(k==0){
-      ans.push_back(root->val);
-  }
-  nodeskleveldown(root->left,k-1,ans,blocker);
-  nodeskleveldown(root->right,k-1,ans,blocker);
+void nodeskleveldown(TreeNode* root,int k,TreeNode* blocker,vector<int>&ans){
+    if(k<0 || root==NULL || root==blocker){
+        return;
+    }
+    if(k==0 ){
+        ans.push_back(root->val);
+    }
+    
+    nodeskleveldown(root->left,k-1,blocker,ans);
+    nodeskleveldown(root->right,k-1,blocker,ans);
 }
+    
+    
 vector<int>ans;
     vector <int> KDistanceNodes(TreeNode* root, int target , int k)
     {
         
        vector<TreeNode*>path=nodetorootpath(root,target);
-        for(int i=0;i<path.size() && i<=k;i++){
-            vector<int>v;
-              nodeskleveldown(path[i],k-i,v,i==0?NULL:path[i-1]);
-              if(v.size()>0){
-                   for(int i=0;i<v.size();i++){
-                  ans.push_back(v[i]);
-              }
-              }
-             
+        vector<int>ans;
+        for(int i=0;i<path.size();i++){
+             nodeskleveldown(path[i],k-i,(i==0)?NULL:path[i-1],ans);
         }
-            // sort( ans.begin(), ans.end() );
+
       return ans;
     }
     
