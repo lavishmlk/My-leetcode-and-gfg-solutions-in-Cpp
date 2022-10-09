@@ -1,5 +1,6 @@
-//(x%k + k)%k is done to counter negative integers in the array-see fraz video after 10
+//gfg pe bhi hai iska similar
 
+//(x%k + k)%k is done to counter negative integers in the array-see fraz video after 10
 //solution by pep-rem and k-rem ki freq same honi chahiye aur 0 remainder ki freq even honi chahiye
 class Solution {
 public:
