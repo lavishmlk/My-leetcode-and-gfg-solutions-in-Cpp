@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //tc-O((n + k)logn)
     //similar to top k frequency elements
     //in this mainly comparator is important
     //since heap me last elements pehle pop hota hai therefore see given test case two uske according hume map heap chahiye to 1 2 3 4 aise store karaenge heap me taaki 4 pehle pop ho aur lexicographically ke like see 1st test case hume i pehle chahiye l ke to uske liye min heap will be used to heap me pehle j hoga fir i
