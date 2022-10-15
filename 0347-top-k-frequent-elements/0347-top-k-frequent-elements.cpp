@@ -10,9 +10,14 @@ public:
         
         priority_queue<pair<int,int>>pq;
         
-       for(auto it:m){
-            pq.push({it.second,it.first});
+            for(auto it=m.begin();it!=m.end();it++){
+            pq.push({it->second,it->first});
         }
+        
+        
+//        for(auto it:m){
+//             pq.push({it.second,it.first});
+//         }
         
         int x=0;
         vector<int>arr;
