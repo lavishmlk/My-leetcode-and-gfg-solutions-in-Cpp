@@ -1,7 +1,7 @@
 class Solution {
 public:
     //logic aditya verma
-    //just find lcs of both string and subtract it from concatenation of both the strings
+    //just find lcs of both string and subtract it from concatenation of both the strings so that repeated string bas ek baar aae aur hume shortest common supersequence mil jaaye
 string shortestCommonSupersequence(string str1, string str2) {
 int m=str1.size();
 int n=str2.size();
