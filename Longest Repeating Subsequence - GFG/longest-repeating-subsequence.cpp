@@ -5,6 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
 	public:
+	//av(aditya verma) logic
 		int LongestRepeatingSubsequence(string s1){
 		    // Code here
 		    string s2=s1;
