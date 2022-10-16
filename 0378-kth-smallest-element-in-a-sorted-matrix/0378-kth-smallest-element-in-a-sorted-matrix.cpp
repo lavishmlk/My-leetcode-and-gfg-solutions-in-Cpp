@@ -1,7 +1,8 @@
 class Solution {
 public:
- // ayushi on youtube
-    //upper bound calculated elements less than or equal to k for eg for 8 upper bound will be 9 in our matrix so there are 2 elements less than equal to 8
+//saw ayushi youtube
+    //tc- n(loop)*logn(upper bound)*log max-min(binary search)
+    //https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/discuss/1685550/Here's-why-Binary-Search-works.-(Explain-it-to-me-like-I'm-5)
     int kthSmallest(vector<vector<int>>& matrix, int k) {
           int n = matrix.size();
         int low = matrix[0][0];
