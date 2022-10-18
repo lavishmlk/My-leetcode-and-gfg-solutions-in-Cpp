@@ -1,34 +1,36 @@
 class Solution {
 public:
+    //recursive approach from discuss but stack wli is better
+    //recursive is very similar to stack wli apprach isme mainly recursion traverse karne ke liye hi use ki hai mainly
+    //agar duplicates hai to like agar c do baar aa rha hai to waise to jitna aage wla c mila utna better hai but lexicographic bhi chahiye for eg 1st test case me last c liye but 2nd test case me second last c liya
+    //isme hum string traverse karenge aur count -- karte jaenge aur saath saath lowest position bhi store karte jaenge jaise h kisi jagah pe count 0 ho jae break coz wo wla element to aega hi ans me agar count zero hai to, par kai test cases aise bhi ho sakte hai jinme count 0 ho jaega kisi element ka par usse pehle aur chote elements bhi hai like see test case 2 usme count 0 d pe hoga par c bhi to aega a ke baad directly d nahi aega in cases ke liye hum c ki next position se leke d tak d ke liye jo pehle count-- kiya tha wo wapas ++ kar denge
+    
+    void dfs(string s, string& ans, vector<int>& cnt, vector<int>&vis){
+        int len = s.length();
+        if(len == 0) return;
+        int pos = -1;
+        int i;
+        for(i = 0; i < len; ++i){
+            if(vis[s[i] - 'a']) continue;
+            if(pos == -1 || s[pos] > s[i]) pos = i;
+            cnt[s[i] - 'a']--;
+            if(cnt[s[i] - 'a'] == 0) break;
+        }
+        if(pos == -1) return;
+        for(int j = pos + 1; j <= i; ++j) cnt[s[j] - 'a']++;
+        ans += s[pos];
+        vis[s[pos] - 'a'] = true;
+        dfs(s.substr(pos + 1), ans, cnt, vis);
+    }
     string removeDuplicateLetters(string s) {
-        
-        //youtube pepcoding
-        //using stack->logic is: hume mainly stack me push karne hai elements agar wo st.top wle element se bada hai aur abhi tak nahi aya to(ye check karne ke liye exist array banaya hai)
-        //else agar wo pehle aa chuka hai tab nahi aega doobara aur ya fir agar st.top ka element present element jo push karna hai usse bada hai to check ki st.top wla element aage future me aega(ye check karne ke liye freq array banaya hai)? agar aaega to baad me push kar denge abhi st.pop karde 
-       vector<int>freq(26,0);
-       vector<bool>exists(26,false);   
-        stack<char>st;
-        for(int i=0;i<s.length();i++){   
-        freq[s[i]-'a']++;
+        string ans;
+        int len = s.length();
+        vector<int>cnt(26, 0);
+        vector<int>vis(26, 0);
+        for(int i = 0; i < len; ++i){
+            cnt[s[i] - 'a']++;
         }
-        
-        for(int i=0;i<s.length();i++){
-             freq[s[i]-'a']--;
-            if(exists[s[i]-'a']==true)
-                continue;
-        
-           while(st.size()>0 && freq[st.top()-'a']>0 && st.top()>s[i]){
-                exists[st.top()-'a']=false;
-                st.pop();
-            }
-            st.push(s[i]);
-            exists[s[i]-'a']=true;
-        }
-        string ans="";
-        while(st.size()>0){
-        ans=ans+st.top();
-        st.pop();}
-        reverse(ans.begin(),ans.end());
+        dfs(s, ans, cnt, vis);
         return ans;
     }
 };
