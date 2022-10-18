@@ -6,6 +6,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
     public:
+    //ayushi youtube
    string removeConsecutiveCharacter(string s)
     {
         // code here.
