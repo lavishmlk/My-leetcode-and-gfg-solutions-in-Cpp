@@ -1,3 +1,4 @@
+//discuss ke kiya sab
 //M1 stack discussion
 // Time Complexity: O(N)
 // Space Complexity: O(N)
