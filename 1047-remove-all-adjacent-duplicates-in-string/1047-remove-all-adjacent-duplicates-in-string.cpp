@@ -1,4 +1,5 @@
 //discuss ke kiya sab
+//gfg pe ye same ques hai but iss ques me azxxxzy ke liye azxzy ans aega but gfg pr ay
 //M1 stack discussion
 // Time Complexity: O(N)
 // Space Complexity: O(N)
@@ -84,3 +85,12 @@ public:
 //         return ans;
 //     }
 // };
+
+//M4 RECURSIVE ANOTHER WAY
+//    string removeDuplicates(string S) {
+//   for (auto i = 1; i < S.size();i++){
+//     if (S[i - 1] == S[i]) 
+// 	  return removeDuplicates(S.substr(0, i - 1) + S.substr(i + 1));
+//   }
+//   return S;
+// }
