@@ -2,6 +2,10 @@
 
 class Solution {
 public:
+    //pepcoding
+    //traverse from last till we dont get a dip soppose we get a dip at i
+    //after that travel again from last and find next greater element and swap it with element[i]
+    //now reverse the number after i to make it smalleest among the greater permutations possible
     int nextGreaterElement(int num) {
           string s = to_string(num);
         int i = s.length() - 2;
