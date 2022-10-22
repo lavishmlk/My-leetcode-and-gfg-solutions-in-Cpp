@@ -13,43 +13,71 @@ public:
     }
 };
 */
-//archit last video 
-//with extra space of map O(n)
+//archit method 2 without extra space 
+//also see method 1 in previous code
+//just create duplicate nodes of every node in original list now modify duplicates node links now seperate the two lists
 class Solution {
 public:
-    Node* copyRandomList(Node* head) {
-        unordered_map<Node*,Node*>m;
+Node* copyRandomList(Node* head) {
         
+        if(head==NULL)
+            return NULL;
+        
+        // temporary (copied) head node
         Node* temp=head;
-        Node* dummy=new Node(-1);
-        Node* tail=dummy;
         
-        while(temp!=NULL){
-            Node* curr=new Node(temp->val);
-            m[temp]=curr;
-            tail->next=curr;
-            tail=curr;
-            temp=temp->next;
+        // 1st Pass
+        
+        while(temp!=NULL)
+        {
+             // Cloned node with same val as head
+            Node* newnode= new Node(temp->val);
+            
+            // Insert the cloned node next to the original node
+            // If A->B->C is the original linked list,
+            // Linked list after weaving cloned nodes would be
+            // A->A'->B->B'->C->C'
+            
+            newnode->next=temp->next;
+            temp->next=newnode;
+            temp=newnode->next;
         }
         
-        Node* temp2=head;
-        Node* x=dummy->next;
-        while(temp2!=NULL){
-
-            //agar auto it use karna hai to use this syntax coz temp2->random can be null
-//                 if(temp2->random){
-//                     auto it=m.find(temp2->random);
-//             x->random=it->second;
-//             }
-// else{
-//     x->random=NULL;
-// }
-            
-            x->random=m[temp2->random];
-            temp2=temp2->next;
-            x=x->next;
-            
+        temp=head;
+        
+        // Link random pointers of the newly created nodes
+        // and iterate through the newly created list and
+        // use original node's random pointers
+        
+        // 2nd Pass
+        
+        while(temp!=NULL)
+        {
+            temp->next->random=(temp->random)?(temp->random->next):NULL;       
+            temp=temp->next->next;
         }
-        return dummy->next;
-    }
+        
+         // Unweave the current linked list to get back the 
+        // original linked list and the cloned one.
+        
+		// A->B->C
+        Node* original=head;
+        
+        // A'->B'->C'
+        Node* clone=head->next;
+        
+        // Result is used for returning
+        Node* result=head->next;
+        // 3rd Pass
+        
+        while(original!=NULL)
+        {
+            original->next=clone->next;
+            clone->next= (original->next)?(original->next->next):NULL;
+            
+            original=original->next;
+            clone=clone->next;
+        }
+        
+        return result;}
 };
