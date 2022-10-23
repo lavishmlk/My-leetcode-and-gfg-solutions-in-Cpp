@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //in my notebook explained
     vector<int> findErrorNums(vector<int>& nums) {
         
      int Xor = 0;
