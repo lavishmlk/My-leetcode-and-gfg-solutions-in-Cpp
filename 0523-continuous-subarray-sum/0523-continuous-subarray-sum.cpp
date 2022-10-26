@@ -1,3 +1,7 @@
+//from->https://www.youtube.com/watch?v=n5Bj3wFTfY4 code with me woutube
+
+//concepts in short: in extra question page 7
+
 class Solution {
 public:
     bool checkSubarraySum(vector<int>& nums, int k) {
