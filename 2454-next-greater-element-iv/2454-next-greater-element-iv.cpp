@@ -1,6 +1,7 @@
 //https://www.youtube.com/watch?v=vF7DkVJnfVQ
 //bro coders youtube
 //biweekly 90
+//O(n) hi hai shyd
 class Solution {
 public:
     vector<int> secondGreaterElement(vector<int>& nums) {
