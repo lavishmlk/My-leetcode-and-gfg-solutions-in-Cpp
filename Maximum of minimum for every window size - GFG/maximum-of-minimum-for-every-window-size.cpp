@@ -8,24 +8,23 @@ using namespace std;
 class Solution
 {
     public:
-    //Function to find maximum of minimums of every window size.
+    //bro coders
+//https://www.youtube.com/watch?v=yRagSKdQgsc
     vector <int> maxOfMin(int arr[], int n)
     {
          stack<int> s;
  
-    // Arrays to store previous and next smaller
+    
     int left[n]; 
     int right[n];
  
-    // Initialize elements of left[] and right[]
+
     for (int i=0; i<n; i++)
     {
         left[i] = -1;
         right[i] = n;
     }
  
-    // Fill elements of left[] using logic discussed on
-    // https://www.geeksforgeeks.org/next-greater-element/
     for (int i=0; i<n; i++)
     {
         while (!s.empty() && arr[s.top()] >= arr[i])
@@ -37,12 +36,10 @@ class Solution
         s.push(i);
     }
  
-    // Empty the stack as stack is
-// going to be used for right[]
+
     while (!s.empty())
         s.pop();
- 
-    // Fill elements of right[] using same logic
+
     for (int i = n-1 ; i>=0 ; i-- )
     {
         while (!s.empty() && arr[s.top()] >= arr[i])
@@ -54,30 +51,79 @@ class Solution
         s.push(i);
     }
  
-    // Create and initialize answer array
+
    vector<int>ans(n,0);
  
-    // Fill answer array by comparing minimums of all
-    // lengths computed using left[] and right[]
+
     for (int i=0; i<n; i++)
     {
-        // length of the interval
+       //yahan -2 isliye liya coz suppose arr=1 2 4 3 now for 2 we have a range of 3-0-1=2 i.e 2 ki range 1st
+       //aur 2nd index tak hai so 2 elements include karliye.now we have to fill len array i.e ans[len] pe arr[i] fill 
+       //karna hai so len in this case is 2 so ans[2]=max(ans[2],arr[i]) but arr me bhi to 0 based indexing hai 
+       //so ans[2] nahi ans[1] pe store hoga ye
+       
         int len = right[i] - left[i] - 2;
  
-        // arr[i] is a possible answer for this length
-        // 'len' interval, check if arr[i] is more than
-        // max for 'len'
+      
         ans[len] = max(ans[len], arr[i]);
     }
 
-    // Some entries in ans[] may not be filled yet. Fill
-    // them by taking values from right side of ans[]
     for (int i=n-2; i>=0; i--)
         ans[i] = max(ans[i], ans[i+1]);
         
         return ans;
     }
 };
+
+//m2- //O(n^2)-Using sliding window max leetcode->k ko bas 1 to n chala de sliding winodw max me
+// class Solution
+// {
+//     public:
+//     //Function to find maximum of minimums of every window size.
+//     vector <int> maxOfMin(int nums[], int n)
+//     {
+//         vector<int>result;
+//         for(int k=1;k<=n;k++){
+//             int Max=INT_MIN;
+//               vector<int>ans;
+//         deque<int>q;
+        
+//         for(int i=0;i<k;i++){
+//               if(q.size()==0){
+//                 q.push_back(nums[i]);
+//                 continue;
+//             }
+//             while(q.size()>0 && q.back()>nums[i]){
+//                 q.pop_back();
+//             }
+//             q.push_back(nums[i]);
+//         }
+//         // ans.push_back(q.front());
+//         Max=q.front();
+//         for(int i=k;i<n;i++){
+//             if(q.front()==nums[i-k]){
+//                 q.pop_front();
+//             }
+//               while(q.size()>0 && q.back()>nums[i]){
+//                 q.pop_back();
+//             }
+//              q.push_back(nums[i]);
+            
+//             if(nums[i]<q.front()){
+//               Max=max(nums[i],Max);
+//             }
+//             else{
+//                 // ans.push_back(q.front());
+//                 Max=max(q.front(),Max);
+//             }
+           
+//         }
+//         // return ans;
+//         result.push_back(Max);
+//         }
+//         return result;
+//     }
+// };
 
 //{ Driver Code Starts.
 int main() {
