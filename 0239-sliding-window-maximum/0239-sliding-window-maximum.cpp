@@ -26,13 +26,7 @@ public:
             }
              q.push_back(nums[i]);
             
-            if(nums[i]>q.front()){
-                ans.push_back(nums[i]);
-            }
-            else{
                 ans.push_back(q.front());
-            }
-           
         }
         return ans;
     }
